@@ -1,17 +1,26 @@
+//cria um array para armazenar as cores
 int[] cores = new int[3];
+//roda apenas uma vez
  void setup(){
+   //tamanho da tela
   size(300,300);
+  //Tira a borda
   noStroke();
+  //Gera 3 cores aleatórias inicialmente
   for(int i=0;i<3;i++){
     cores[i] = color(random(255),random(255),random(255));
   }
  }
+ //Roda infinitamente
 void draw(){
-   background(220);
+  //Define o bg
+   background(110
+   //Define a cor 1 como fill e cria um rect com ela e assim por diante até o quadrado 3
     for(int i=0;i<3;i++){
       fill(cores[i]);
       rect(i*100,100,100,100);
   }
+  //verifica a posição do mouse de acordo com a posição dos quadrados e muda as cores dentro do array cores[]
    for(int i=0;i<3;i++){
 if(mouseX >= i*100 && mouseX <= i*100+100 && mouseY >=100 && mouseY <= 200){
   
