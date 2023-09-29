@@ -9,13 +9,13 @@ void settings(){
 void draw(){
   for(int j=0;j<quantidadeVertical;j++){
    for(int i=0;i<quantidadeHorizontal;i++){
-    float x1 = w/quantidadeVertical * i;
+    float x1 = w/quantidadeHorizontal * i;
     float x4 = x1;
-    float y1 = j*h/quantidadeHorizontal;
+    float y1 = j*h/quantidadeVertical;
     float y2 = y1;
-    float x2 = x1 + w/quantidadeVertical;
+    float x2 = x1 + w/quantidadeHorizontal;
     float x3 = x2;
-    float y3 = y1 + h/quantidadeHorizontal;
+    float y3 = y1 + h/quantidadeVertical;
     float y4 = y3;
     quad(x1,y1,x2,y2,x3,y3,x4,y4);
    }
