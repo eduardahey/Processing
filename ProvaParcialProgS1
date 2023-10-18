@@ -1,0 +1,62 @@
+int width = 500;
+int height = 500;
+int xRect1 = width/2-5*width/22;
+int xRect2 = xRect1+3*width/11;
+int xRect3 = xRect1;
+int xRect4 = xRect2;
+int yRect1 = height/2-5*height/22;
+int yRect2 = yRect1;
+int yRect3 = yRect1+3*height/11;
+int yRect4 = yRect3;
+int widthRects = 2*width/11;
+int heightRects = 2*height/11;
+int xArc1 = xRect1;
+int yArc1 = yRect1;
+int xArc2 = xRect2+2*width/11;
+int yArc2 = yRect2;
+int xArc3 = xRect3;
+int yArc3 = yRect3+2*height/11;
+int xArc4 = xArc2;
+int yArc4= yArc3;
+int widthArcs = 2*(widthRects);
+int heightArcs = 2*(heightRects);
+int matiz1 = int(random(360));
+int matiz2 = (matiz1+30)%360;
+int matiz3 = (matiz1-30+360)%360;
+int saturacao = 100;
+void settings(){
+  size(width,height);
+}
+void setup(){
+  colorMode(HSB,360,100,100);
+}
+void draw(){
+  background(matiz1,saturacao,100);
+  noStroke();
+  fill(matiz2,saturacao,100);
+  rect(0,0,2*width/11,height);
+  fill(matiz3,saturacao,100);
+  rect(xRect1,yRect1,widthRects,heightRects);
+  arc(xArc1,yArc1,widthArcs,heightArcs,radians(90),radians(360));
+  
+  rect(xRect2,yRect2,widthRects,2*height/11);
+  arc(xArc2,yArc2,widthArcs,heightArcs,radians(180),radians(360+90));
+
+  rect(xRect3,yRect3,widthRects,heightRects);
+  arc(xArc3,yArc3,widthArcs,heightArcs,radians(0),radians(270));
+  
+  rect(xRect4,yRect4,widthRects,heightRects);
+  arc(xArc4,yArc4,widthArcs,heightArcs,radians(270),radians(360+180));
+}
+
+void keyPressed(){
+  if(keyCode == 37){
+    saturacao = saturacao-5;
+  }else if(keyCode == RIGHT){
+    saturacao = saturacao+5;
+  }else if(keyCode == UP){
+    saturacao = 100;
+  }else if(keyCode == DOWN){
+    saturacao = 0;
+  }
+}
