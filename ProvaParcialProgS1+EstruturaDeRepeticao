@@ -1,7 +1,7 @@
 int width = 600;
 int height = 600;
-int quantidadeVertical = 9;
-int quantidadeHorizontal = 9;
+int quantidadeVertical = 10;
+int quantidadeHorizontal = 10;
 int quantidadeTotal = quantidadeVertical*quantidadeHorizontal;
 int matiz1 = int(random(360));
 int matiz2 = (matiz1+30)%360;
@@ -12,6 +12,7 @@ void settings(){
 }
 void setup(){
 colorMode(HSB,360,100,100);
+
 }
 void draw(){
   for(int j=0;j<quantidadeVertical;j++){
@@ -46,12 +47,13 @@ void draw(){
     float yRect4 = yRect3;
     float xArc4 = xArc2;
     float yArc4= yArc3;
+    noStroke();
     fill(matiz1,saturacao,100);
     quad(x1,y1,x2,y2,x3,y3,x4,y4);
     
-    noStroke();
+    
     fill(matiz2,saturacao,100);
-    rect(x1,y1,2*(x2-x1)/11,x1+x2);
+    rect(x1,y1,2*larguraFundo/11,alturaFundo);
     
     fill(matiz3,saturacao,100);
     
