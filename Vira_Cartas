@@ -1,0 +1,78 @@
+int[][] matrizDinheiro;//matriz que vai receber a função que retorna os valores
+int[][] matrizEstado;
+int saldoInicial = 1000;
+void setup(){
+  size(500,500);
+  matrizDinheiro = geraMatriz(5,-500,500);//recebe os valores
+  matrizEstado = new int[matrizDinheiro.length][matrizDinheiro[0].length];
+  desenhaCartas(matrizDinheiro, matrizEstado);
+}
+
+void draw(){
+}
+void desenhaCartas(int[][] valores, int[][] estado){
+  int larguraCarta = width/5;//sempre terão 5 cartas na horizontal
+  int alturaCarta = height/5;//sempre terão 5 cartas na vertical
+  for(int i=0;i<5;i++){//desenha 25 cartas
+    for(int j=0;j<5;j++){
+      float x = i * larguraCarta;
+      float y = j * alturaCarta;
+      // Define a cor com base no estado da carta
+      if (estado[i][j] == 0) {
+        fill(255);  // Branco para cartas viradas
+      } else if (estado[i][j] == 1) {
+        fill(255, 0, 0);  // Vermelho para cartas negativas
+      } else if (estado[i][j] == 2) {
+        fill(0, 255, 0);  // Verde para cartas positivas
+      }
+      // Desenha a carta como um retângulo
+      rect(x, y, larguraCarta, alturaCarta);
+       // Adiciona o valor da carta como texto no centro do retângulo se estiver virada
+      if (estado[i][j] == 0) {
+        fill(0);  // Cor do texto
+        textSize(16);
+        textAlign(CENTER, CENTER);
+        text("?", x + larguraCarta / 2, y + alturaCarta / 2);
+      } else {
+        // Se a carta estiver virada, exibe o valor
+        fill(255);  // Cor do texto
+        textSize(16);
+        textAlign(CENTER, CENTER);
+        text(valores[i][j], x + larguraCarta / 2, y + alturaCarta / 2);
+      }
+    }
+  }
+}
+
+void mouseClicked(){
+  int colunaClicada = mouseX / (width / matrizDinheiro.length);
+  //Se você clicar no meio da tela (por exemplo, em (200, 200) pixels), as coordenadas 
+  //serão convertidas para a posição correspondente na matriz de cartas.
+  //colunaClicada = 200 / (400 / 5) = 2
+  int linhaClicada = mouseY / (height / matrizDinheiro.length);
+  if((colunaClicada < matrizDinheiro.length)&& (linhaClicada < matrizDinheiro[0].length)){
+    if(matrizEstado[colunaClicada][linhaClicada] == 0){
+      if(matrizDinheiro[colunaClicada][linhaClicada] < 0){
+        matrizEstado[colunaClicada][linhaClicada] = 1;
+      }else{
+        matrizEstado[colunaClicada][linhaClicada] = 2;
+      }
+    }
+    desenhaCartas(matrizDinheiro, matrizEstado);
+    saldoInicial = saldoInicial - matrizDinheiro[colunaClicada][linhaClicada];
+    println("Seu saldo é:" + saldoInicial);
+    if(saldoInicial <=0){
+    println("Você perdeu! Seu saldo é:" + saldoInicial);
+  }
+  }
+}
+
+int[][] geraMatriz(int n,int vi,int vf){
+  int[][] matrizValores = new int[n][n];//cria a matriz
+  for(int i=0; i<n;i++){
+    for(int j=0;j<n;j++){
+      matrizValores[i][j] = int(random(vi,vf+1));//preenche a matriz, o "+1" é porque o random inclui o primeiro e exclui o último
+    }
+  }
+  return matrizValores;
+}
