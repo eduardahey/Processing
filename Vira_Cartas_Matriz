@@ -59,7 +59,7 @@ void mouseClicked(){
       }
     }
     desenhaCartas(matrizDinheiro, matrizEstado);
-    saldoInicial = saldoInicial - matrizDinheiro[colunaClicada][linhaClicada];
+    saldoInicial = saldoInicial + matrizDinheiro[colunaClicada][linhaClicada];
     println("Seu saldo é:" + saldoInicial);
     if(saldoInicial <=0){
     println("Você perdeu! Seu saldo é:" + saldoInicial);
